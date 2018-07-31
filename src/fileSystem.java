@@ -1,39 +1,38 @@
 import java.util.HashMap;
 
-public class fileSystem {
+class fileSystem {
 
     //Fields:
     private HashMap<String,fileSystemObjects> files;
-    private directory root;
 
     //Constructor
-    public fileSystem() throws Exception{
+    fileSystem() throws Exception{
         this.files = new HashMap<>();
-        root = new directory("root",null);
-        this.files.put("root",root);
+        directory root = new directory("root", null);
+        this.files.put("root", root);
     }
 
-     public void addFile(String parentDirName,String fileName, Integer fileSize) throws Exception{
+     void addFile(String parentDirName, String fileName, Integer fileSize) throws Exception{
         checkUniquename(fileName);
         file fileToAdd = new file(fileName,parentDirName,fileSize);
         addToParentDirectory(fileToAdd,parentDirName);
         files.put(fileToAdd.name,fileToAdd);
      }
 
-    public void addDirectory(String parentDirName,String dirName) throws Exception{
+    void addDirectory(String parentDirName, String dirName) throws Exception{
         checkUniquename(dirName);
         directory directoryToAdd = new directory(dirName,parentDirName);
         addToParentDirectory(directoryToAdd,parentDirName);
         files.put(directoryToAdd.name,directoryToAdd);
     }
 
-    public void delete(String name){
+    void delete(String name){
         fileSystemObjects fileSystemObjects = files.get(name);
         files.remove(name);
         ((directory) files.get(fileSystemObjects.parentDir)).delete(name);
     }
 
-    public void showFileSystem(){
+    void showFileSystem(){
         files.get("root").printFileSystemObjects(" ");
     }
 

@@ -1,10 +1,10 @@
 public class file extends fileSystemObjects {
 
     //Fields:
-    int size;
+     private int size;
 
     //Constructor
-    public file(String name, String parentDir,int size) throws Exception {
+    file(String name, String parentDir, int size) throws Exception {
         super(name, parentDir);
         if (size < 1)
             throw new Exception("File size must be positive");

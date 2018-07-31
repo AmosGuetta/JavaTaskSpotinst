@@ -2,23 +2,21 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 
 public class directory extends fileSystemObjects {
-
     //Fields:
     private  HashMap<String,fileSystemObjects> subDirectoryAndSubFiles;
 
     //Constructor
-    public directory(String name, String parentDir) throws Exception {
+    directory(String name, String parentDir) throws Exception {
         super(name, parentDir);
-        this.subDirectoryAndSubFiles = new HashMap<String,fileSystemObjects>();
+        this.subDirectoryAndSubFiles = new HashMap<>();
     }
 
-    public void addToDirectory(fileSystemObjects fileSystemObjects){
+    void addToDirectory(fileSystemObjects fileSystemObjects){
         subDirectoryAndSubFiles.put(fileSystemObjects.name,fileSystemObjects);
     }
 
-    public void delete (String name){
-        if(subDirectoryAndSubFiles.containsKey(name))
-            subDirectoryAndSubFiles.remove(name);
+    void delete(String name){
+        subDirectoryAndSubFiles.remove(name);
     }
 
 
