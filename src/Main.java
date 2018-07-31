@@ -1,46 +1,60 @@
+import java.util.Scanner;
+
 public class Main {
 
-    public static void main(String[] args) {
-        try{
+    public static void main(String[] args) throws Exception {
 
-            fileSystem fileSystem = new fileSystem();
-            // Building the hierarchical directories structure.
-            fileSystem.addDirectory("root","Desktop");
-            fileSystem.addDirectory("root","Development");
-            fileSystem.addDirectory("Desktop","Tests");
-            fileSystem.addDirectory("Development","myFirstApp");
-            fileSystem.addDirectory("Development","JavaProjects");
-            fileSystem.addDirectory("Development","C_Projects");
-
-            //Add files to directories
-            fileSystem.addFile("Desktop","StudentProfilePicture",100);
-            fileSystem.addFile("Desktop","CV",90);
-            fileSystem.addFile("Tests","FileSystemTests",80);
-            fileSystem.addFile("Tests","DataStructuresTests",70);
+        fileSystem fileSystem = new fileSystem();
+        String parentDirName, name;
+        int size, option;
+        Scanner input = new Scanner(System.in);
 
 
-            fileSystem.addFile("myFirstApp","HelloWorld",60);
-            fileSystem.addFile("JavaProjects","Server",50);
-            fileSystem.addFile("C_Projects","clients",40);
+        System.out.println("You are at the root directory, choose a function to operate");
 
-            // showFileSystem function result.
-            fileSystem.showFileSystem();
+        while (true) {
+            System.out.println("addFile         -      [1]");
+            System.out.println("addDirectory    -      [2]");
+            System.out.println("deleteFile      -      [3]");
+            System.out.println("showFileSystem  -      [4]");
+            System.out.println("Exit            -      [5]");
+            //option = check(input);
+            option = input.nextInt();
 
-
-            System.out.println("------------------------------------- Delete Tests ------------------------------------- ");
-            fileSystem.delete("Tests");
-            fileSystem.delete("HelloWorld");
-
-            fileSystem.showFileSystem();
-
-            System.out.println("------------------------------------- Add file and directory after remove Tests -------------------------------------");
-            fileSystem.addFile("myFirstApp","HelloWorld2",60);
-            fileSystem.addFile("Desktop","FileSystemTests",800);
-            fileSystem.addDirectory("Desktop","Tests");
-            fileSystem.showFileSystem();
-
-        } catch (Exception e) {
-            e.printStackTrace();
+            switch (option) {
+                case 1:
+                    System.out.println("Enter the parent directory name: ");
+                    parentDirName = input.next();
+                    System.out.println("Enter the file name: ");
+                    name = input.next();
+                    System.out.println("Enter the file size: ");
+                    size = check(input);
+                    fileSystem.addFile(parentDirName, name, size);
+                    break;
+                case 2:
+                    System.out.println("Enter the parent directory name: ");
+                    parentDirName = input.next();
+                    System.out.println("Enter the directory name: ");
+                    name = input.next();
+                    fileSystem.addDirectory(parentDirName, name);
+                    break;
+                case 3:
+                    System.out.println("Enter the file name or directory name you want to delete");
+                    name = input.next();
+                    fileSystem.delete(name);
+                    break;
+                case 4:
+                    fileSystem.showFileSystem();
+                    break;
+                case 5:
+                    input.close();
+                    return;
+                default:
+                    System.out.println("There is no such an option, choose again: ");
+                    break;
+            }
         }
     }
+
+
 }
