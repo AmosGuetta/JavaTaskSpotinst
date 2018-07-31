@@ -7,6 +7,7 @@ class fileSystem {
 
     //Fields:
     private HashMap<String,fileSystemObjects> files;
+    private List<fileSystemObjects> deleteFilesList = new ArrayList<>();
 
     //Constructor
     fileSystem() throws Exception{
@@ -30,22 +31,18 @@ class fileSystem {
     }
 
     void delete(String name) throws Exception{
-        if(name == "root")
+        if (name == "root")
             throw new Exception("You can not delete the root directory");
-        List<fileSystemObjects> myList = new ArrayList<>();
-        for(Map.Entry<String,fileSystemObjects> entry : files.entrySet()){
-           fileSystemObjects myFiles = entry.getValue();
-           if(myFiles.parentDir != null)
-            if(myFiles.parentDir .equals(name)) {
-                myList.add(myFiles);
-            }
-        }
+        allFilesToRemove(name);
         fileSystemObjects fileSystemObjects = files.get(name);
-        files.remove(name);
-        ((directory) files.get(fileSystemObjects.parentDir)).delete(name);
-
-        for (int i = 0; i < myList.size() ; i++)
-            this.files.remove(myList.get(i).name);
+        if(fileSystemObjects != null) {
+            ((directory) files.get(fileSystemObjects.parentDir)).delete(name);
+            for (int i = 0; i < deleteFilesList.size(); i++) {
+                this.files.remove(deleteFilesList.get(i).name);
+            }
+            this.files.remove(name);
+            deleteFilesList = new ArrayList<>();
+        }
 
     }
 
@@ -67,6 +64,17 @@ class fileSystem {
     private void checkUniquename(String name) throws Exception{
         if(files.containsKey(name))
             throw new Exception("This file name is already exist in the system.");
+    }
+
+    private void allFilesToRemove(String name) throws Exception {
+        for (Map.Entry<String, fileSystemObjects> entry : files.entrySet()) {
+            fileSystemObjects myFiles = entry.getValue();
+            if (myFiles.parentDir != null)
+                if (myFiles.parentDir.equals(name)) {
+                    deleteFilesList.add(myFiles);
+                    allFilesToRemove(myFiles.name);
+                }
+        }
     }
 
 
