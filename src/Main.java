@@ -23,13 +23,16 @@ public class Main {
             fileSystem.addFile("C_Projects","clients",40);
 
 
-            //fileSystem.showFileSystem();
+            fileSystem.showFileSystem();
 
 
             System.out.println("--------------------------------Delete--------------------------------------");
 
             fileSystem.delete("FileSystemTests");
+            fileSystem.delete("Server");
+            /*
             fileSystem.showFileSystem();
+            */
         } catch (Exception e) {
             e.printStackTrace();
         }
