@@ -2,9 +2,11 @@ import java.util.HashMap;
 
 public class fileSystem {
 
-    HashMap<String,fileSystemObjects> files;
+    //Fields:
+    private HashMap<String,fileSystemObjects> files;
     private directory root;
 
+    //Constructor
     public fileSystem() throws Exception{
         this.files = new HashMap<>();
         root = new directory("root",null);
