@@ -31,14 +31,14 @@ class fileSystem {
     }
 
     void delete(String name) throws Exception{
-        if (name == "root")
+        if (name.equals("root"))
             throw new Exception("You can not delete the root directory");
         allFilesToRemove(name);
         fileSystemObjects fileSystemObjects = files.get(name);
         if(fileSystemObjects != null) {
             ((directory) files.get(fileSystemObjects.parentDir)).delete(name);
-            for (int i = 0; i < deleteFilesList.size(); i++) {
-                this.files.remove(deleteFilesList.get(i).name);
+            for (fileSystemObjects aDeleteFilesList : deleteFilesList) {
+                this.files.remove(aDeleteFilesList.name);
             }
             this.files.remove(name);
             deleteFilesList = new ArrayList<>();
@@ -65,7 +65,7 @@ class fileSystem {
             throw new Exception("This file name is already exist in the system.");
     }
 
-    private void allFilesToRemove(String name) throws Exception {
+    private void allFilesToRemove(String name) {
         for (Map.Entry<String, fileSystemObjects> entry : files.entrySet()) {
             fileSystemObjects myFiles = entry.getValue();
             if (myFiles.parentDir != null)

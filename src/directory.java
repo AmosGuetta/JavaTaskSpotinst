@@ -3,7 +3,7 @@ import java.util.Map.Entry;
 
 public class directory extends fileSystemObjects {
     //Fields:
-    protected HashMap<String,fileSystemObjects> subDirectoryAndSubFiles;
+    private HashMap<String,fileSystemObjects> subDirectoryAndSubFiles;
 
     //Constructor
     directory(String name, String parentDir) throws Exception {
