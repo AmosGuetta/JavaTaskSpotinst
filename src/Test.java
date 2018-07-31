@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main {
+public class Test {
 
     public static void main(String[] args) throws Exception {
 
@@ -18,7 +18,6 @@ public class Main {
             System.out.println("deleteFile      -      [3]");
             System.out.println("showFileSystem  -      [4]");
             System.out.println("Exit            -      [5]");
-            //option = check(input);
             option = input.nextInt();
 
             switch (option) {
@@ -28,7 +27,7 @@ public class Main {
                     System.out.println("Enter the file name: ");
                     name = input.next();
                     System.out.println("Enter the file size: ");
-                    size = check(input);
+                    size = Integer.parseInt(input.next());
                     fileSystem.addFile(parentDirName, name, size);
                     break;
                 case 2:
