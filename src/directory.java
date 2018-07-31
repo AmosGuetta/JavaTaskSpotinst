@@ -3,7 +3,7 @@ import java.util.Map.Entry;
 
 public class directory extends fileSystemObjects {
     //Fields:
-    private  HashMap<String,fileSystemObjects> subDirectoryAndSubFiles;
+    protected HashMap<String,fileSystemObjects> subDirectoryAndSubFiles;
 
     //Constructor
     directory(String name, String parentDir) throws Exception {
@@ -19,13 +19,12 @@ public class directory extends fileSystemObjects {
         subDirectoryAndSubFiles.remove(name);
     }
 
-
     @Override
     public void printFileSystemObjects(String str) {
         System.out.println(str + "Directory name: " + this.name + ", Creation Time: " + this.creationTime.toString() +"\n");
         for(Entry<String,fileSystemObjects>  entry : subDirectoryAndSubFiles.entrySet()){
             fileSystemObjects fileSystemObjects = entry.getValue();
-            fileSystemObjects.printFileSystemObjects(str + "  ");
+            fileSystemObjects.printFileSystemObjects(str +  " ");
         }
 
     }
