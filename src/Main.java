@@ -28,13 +28,16 @@ public class Main {
 
 
             System.out.println("------------------------------------- Delete Tests ------------------------------------- ");
-            fileSystem.delete("Desktop");
+            fileSystem.delete("Tests");
+            fileSystem.delete("HelloWorld");
+
             fileSystem.showFileSystem();
 
             System.out.println("------------------------------------- Add file and directory after remove Tests -------------------------------------");
-
-            fileSystem.addFile("Tests","FileSystemTests",80);
-
+            fileSystem.addFile("myFirstApp","HelloWorld2",60);
+            fileSystem.addFile("Desktop","FileSystemTests",800);
+            fileSystem.addDirectory("Desktop","Tests");
+            fileSystem.showFileSystem();
 
         } catch (Exception e) {
             e.printStackTrace();
