@@ -16,8 +16,6 @@ public abstract class fileSystemObjects {
         this.creationTime = new Date();
     }
 
-
-
     public abstract void printFileSystemObjects(String str);
 
 

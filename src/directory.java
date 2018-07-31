@@ -22,7 +22,7 @@ public class directory extends fileSystemObjects {
 
     @Override
     public void printFileSystemObjects(String str) {
-        System.out.println(str + "File name: " + this.name + ", Creation Time: " + this.creationTime.toString() +"\n");
+        System.out.println(str + "Directory name: " + this.name + ", Creation Time: " + this.creationTime.toString() +"\n");
         for(Entry<String,fileSystemObjects>  entry : subDirectoryAndSubfiels.entrySet()){
             fileSystemObjects fileSystemObjects = entry.getValue();
             fileSystemObjects.printFileSystemObjects(str + "  ");
